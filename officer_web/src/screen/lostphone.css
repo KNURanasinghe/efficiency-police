@@ -12,8 +12,8 @@
 .request-list-container {
   max-height: 500px; /* Set a maximum height */
   margin-top: 75%;
-  margin-left: -40%;
-  margin-right: -30%; /* Set left and right margins to auto for center alignment */
+  margin-left: -4%;
+  margin-right: -60%; /* Set left and right margins to auto for center alignment */
   width: 80%; /* Set a width to control the container's size */
   overflow-y: auto; /* Enable vertical scrolling */
 }

@@ -13,7 +13,7 @@
 .request-list-container {
     max-height: 500px; /* Set a maximum height */
     margin-top: 70%; /* Add margin-top to move the request list down */
-    margin-left: -30%;
+    margin-left: -5%;
     margin-right: -30%;
     width: 80%;
     overflow-y: auto;

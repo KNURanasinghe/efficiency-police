@@ -1,0 +1,68 @@
+/* Default styles */
+.buttons {
+    text-align: right;
+    margin-bottom: 2vh; /* Adjusted margin using viewport height */
+    margin-top: 20vh; /* Adjusted margin using viewport height */
+    margin-right: 5vw; /* Adjusted margin using viewport width */
+    
+}
+
+.insertButton,
+.updateButton {
+    margin-right: 1vw; /* Adjusted margin using viewport width */
+    padding: 1.2vh 3.0vw; /* Adjusted padding using viewport units */
+    font-size: 1.6vw; /* Adjusted font-size using viewport width */
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5vw; /* Adjusted border-radius using viewport width */
+}
+
+.insertButton {
+    background-color: blue;
+    color: white;
+    font-size: 18px
+}
+
+.updateButton {
+    background-color: green;
+    color: white;
+    font-size: 18px
+}
+
+.container {
+    padding: 2vh 5vw; /* Adjusted padding using viewport units */
+    border-radius: 1vw; /* Adjusted border-radius using viewport width */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 0.8vh 1.6vw; /* Adjusted padding using viewport units */
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.cont {
+    margin-top: 5vh; /* Adjusted margin using viewport height */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .buttons {
+        margin-right: 3vw; /* Adjusted margin-right for smaller screens */
+    }
+    .container {
+        padding: 2vh 3vw; /* Adjusted padding for smaller screens */
+        margin: 2vh auto; /* Centered container and added margin for smaller screens */
+    }
+    .cont {
+        margin-top: 2vh; /* Adjusted margin-top for smaller screens */
+    }
+}

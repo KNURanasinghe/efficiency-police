@@ -1,0 +1,72 @@
+/* Header.css */
+
+.header {
+    background-color: cornflowerblue; /* Light blue color */
+    position: fixed; /* Position the header at the top */
+    top: 0; /* Align the header to the top of the page */
+    width: 100%; /* Make the header full width */
+    left: 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative; /* Make container position relative */
+    height: 110px;
+    
+}
+
+.logo img {
+    width: 100px; /* Adjust the width of the logo as needed */
+    height: auto;
+    margin-bottom: 30px;
+    margin-left: 250%;
+}
+
+.name {
+    font-size: 24px;
+    color: #fff; /* Text color */
+    margin-bottom: 30px; /* Add margin bottom to create space */
+    margin-left: 30%;
+}
+
+.nav-items {
+    position: absolute; /* Position navigation absolutely */
+    left: 50%; /* Center align horizontally */
+    transform: translateX(-50%); /* Center align horizontally */
+    display: flex;
+    list-style-type: none;
+   margin-top: 30px ;
+   margin-left: 20%;
+   
+    width: 800px;
+    
+}
+
+.nav-items li {
+    margin-right: 20px;
+}
+
+.nav-items a {
+    color: white; /* Set text color to white */
+    font-size: 18px; /* Set font size to 24px */
+    text-decoration: none;
+}
+
+.notification-item {
+    position: relative;
+}
+
+.notification-item span {
+    position: absolute;
+    top: -30px; /* Adjust vertical position */
+    right: -15px; /* Adjust horizontal position */
+    background-color: red;
+    color: white;
+    font-size: 12px; /* Adjust font size */
+    padding: 4px 8px;
+    border-radius: 50%;
+}

@@ -1,0 +1,27 @@
+/* Footer.css */
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: cornflowerblue; /* Light blue color */
+    color: #fff; /* Text color */
+    padding: 10px 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.rights {
+    font-size: 16px;
+   margin-left: 40%;
+   margin-top: 15%;
+   
+}

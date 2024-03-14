@@ -1,0 +1,64 @@
+/* clearence.css */
+
+.clearance-page {
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.request-list-container {
+    max-height: 500px; /* Set a maximum height */
+    margin-top: 75%;
+    margin-left: -50%;
+    margin-right: -30%; /* Set left and right margins to auto for center alignment */
+    width: 80%; /* Set a width to control the container's size */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+
+.request-list {
+    width: 100%; /* Make the list fill the container width */
+}
+
+.request-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.request-details {
+    flex-basis: calc(100% - 150px); /* Adjust as needed */
+}
+
+.request-buttons {
+    flex-basis: 150px; /* Adjust as needed */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Button styles */
+.request-buttons button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+.request-buttons button.approve {
+    background-color: green;
+    color: white;
+}
+
+.request-buttons button.disapprove {
+    background-color: red;
+    color: white;
+}

@@ -1,0 +1,64 @@
+/* clearence.css */
+
+.clearance-page {
+    padding: 20px;
+    margin-top: 100px; /* Add margin-top to move the title down */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.request-list-container {
+    max-height: 500px; /* Set a maximum height */
+    margin-top: 70%; /* Add margin-top to move the request list down */
+    margin-left: -30%;
+    margin-right: -30%;
+    width: 80%;
+    overflow-y: auto;
+}
+
+.request-list {
+    width: 100%;
+}
+
+.request-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+   
+}
+
+.request-details {
+    flex-basis: calc(100% - 150px);
+}
+
+.request-buttons {
+    flex-basis: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.request-buttons button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+.request-buttons button.approve {
+    background-color: green;
+    color: white;
+}
+
+.request-buttons button.disapprove {
+    background-color: red;
+    color: white;
+}

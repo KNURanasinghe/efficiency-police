@@ -16,7 +16,6 @@
     padding: 0 20px;
     position: relative; /* Make container position relative */
     height: 110px;
-    
 }
 
 .logo img {
@@ -39,11 +38,9 @@
     transform: translateX(-50%); /* Center align horizontally */
     display: flex;
     list-style-type: none;
-   margin-top: 30px ;
-   margin-left: 20%;
-   
+    margin-top: 30px;
+    margin-left: 20%;
     width: 800px;
-    
 }
 
 .nav-items li {
@@ -69,4 +66,50 @@
     font-size: 12px; /* Adjust font size */
     padding: 4px 8px;
     border-radius: 50%;
+}
+
+.message-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #aaa;
+}
+.auth-buttons {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    left: 90%;
+    color: #fff;
+    padding: 15px;
+    
+}
+.auth-buttons a{
+    text-decoration: none;
+    color: white;
+    padding: 15px;
+}
+.auth-buttons button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+.auth-buttons button:hover {
+    text-decoration: underline;
 }

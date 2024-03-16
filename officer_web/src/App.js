@@ -7,6 +7,8 @@ import ClearancePage from './screen/clearencepage'; // Corrected import
 import Home from './screen/home';
 import LostPhone from './screen/lostphone';
 import ComplainPage from './screen/onlinecomplain';
+import SignUp from './screen/signup';
+import SignIn from './screen/signin';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/clearancepage" element={<ClearancePage />} /> {/* Corrected path */}
           <Route path="/onlinecomplain" element={<ComplainPage />} />
           <Route path="/lostphone" element={<LostPhone />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
           {/* Add more routes as needed */}
         </Routes>
         <Footer />

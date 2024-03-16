@@ -1,11 +1,38 @@
-// Header.js
-
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import React, { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import './header.css';
 import Logo from '../asset/logo.png';
 
 function Header() {
+    const [showMessageBox, setShowMessageBox] = useState(false);
+    const [criminalInfo, setCriminalInfo] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // Simulating an API call to check if a criminal is found
+        const timeout = setTimeout(() => {
+            const criminalData = {
+                name: 'John Doe',
+                location: 'City X',
+                time: 'Today at 3:00 PM'
+            };
+            setCriminalInfo(criminalData);
+            setShowMessageBox(true); // Show the message box
+        }, 5000); // Simulating API call after 5 seconds
+
+        // Clean up the timeout to avoid memory leaks
+        return () => clearTimeout(timeout);
+    }, []); // Run this effect only once when the component mounts
+
+    const closeMessageBox = () => {
+        setShowMessageBox(false);
+    };
+
+    const handleLogout = () => {
+        // Perform logout logic
+        setIsLoggedIn(false);
+    };
+
     return (
         <header className="header">
             <div className="container">
@@ -17,14 +44,36 @@ function Header() {
                 </div>
                 <nav>
                     <ul className="nav-items">
-                        {/* Use Link component instead of anchor tags */}
-                        <li><Link to="/">Home</Link><span className="notification-item" ></span></li>
-                        <li><Link to="/clearancepage">Police Clearance</Link><span className="notification-item" ></span></li>
-                        <li><Link to="/onlinecomplain">Online Complaints</Link><span className="notification-item" data-count="5"></span></li>
-                        <li><Link to="/lostphone">Lost Mobiles</Link><span className="notification-item" data-count="2"></span></li>
+                        <li><NavLink to="/">Home</NavLink><span className="notification-item"></span></li>
+                        <li><NavLink to="/clearancepage">Police Clearance</NavLink><span className="notification-item"></span></li>
+                        <li><NavLink to="/onlinecomplain">Online Complaints</NavLink><span className="notification-item" data-count="5"></span></li>
+                        <li><NavLink to="/lostphone">Lost Mobiles</NavLink><span className="notification-item" data-count="2"></span></li>
                     </ul>
                 </nav>
+                <div className="auth-buttons">
+                    {isLoggedIn ? (
+                        <button onClick={handleLogout}>Logout</button>
+                    ) : (
+                        <>
+                            <NavLink to="/signin">SignIn</NavLink>
+                            <NavLink to="/signup">SignUp</NavLink>
+                        </>
+                    )}
+                </div>
             </div>
+            {showMessageBox && (
+                <div className="message-box">
+                    <button className="close-btn" onClick={closeMessageBox}>X</button>
+                    <p>Criminal found!</p>
+                    {criminalInfo && (
+                        <div>
+                            <p>Name: {criminalInfo.name}</p>
+                            <p>Location: {criminalInfo.location}</p>
+                            <p>Time: {criminalInfo.time}</p>
+                        </div>
+                    )}
+                </div>
+            )}
         </header>
     );
 }

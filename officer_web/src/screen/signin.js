@@ -21,7 +21,7 @@ function SignIn() {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            const response = await axios.post('your_api_login_endpoint', formData);
+            const response = await axios.post('{{baseURL}}/api/auth/login', formData);
             console.log('Response:', response.data);
             setFormData({
                 username: '',

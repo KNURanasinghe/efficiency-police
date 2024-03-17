@@ -26,7 +26,7 @@ function ClearancePage() {
     const handleApprove = requestId => {
         // Send request to API to approve the clearance request with the given ID
         // Example axios request:
-        /*
+        
         axios.put(`/api/requests/${requestId}/approve`, { status: 'approved' })
             .then(response => {
                 // Update local state to reflect the change
@@ -37,7 +37,7 @@ function ClearancePage() {
                 );
             })
             .catch(error => console.error('Error approving request:', error));
-        */
+        
     };
 
     const handleDisapprove = requestId => {

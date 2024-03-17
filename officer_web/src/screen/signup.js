@@ -23,7 +23,7 @@ function SignUp() {
         e.preventDefault();
         try {
             // Make POST request to your API endpoint
-            const response = await axios.post('your_api_endpoint', formData);
+            const response = await axios.post('/api/auth/register', formData);
             console.log('Response:', response.data); // Log the response from the API
             // Reset form fields
             setFormData({

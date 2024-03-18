@@ -5,6 +5,7 @@ import './home.css';
 
 function HomePage() {
     const [data, setData] = useState([]);
+    const [name1, setName1] = useState(''); // Declare name1 variable
     const token = localStorage.getItem('token');
 
     const fetchData = async () => {
@@ -30,10 +31,10 @@ function HomePage() {
     };
 
     useEffect(() => {
-        if (token) { // Check if token exists before fetching data
+        if (token) {
             fetchData();
         }
-    }, [token]); // Re-run effect when token changes
+    }, [token]);
 
     const handleInsert = async () => {
         try {
@@ -53,7 +54,7 @@ function HomePage() {
                 }
             );
             console.log('Insert response:', response.data);
-            fetchData(); // Fetch updated data after successful insert
+            fetchData();
         } catch (error) {
             console.error('Error inserting data:', error);
         }
@@ -65,11 +66,10 @@ function HomePage() {
                 console.error('Token is null');
                 return;
             }
-    
+
             const formData = new FormData();
-            // Append the 'name' variable to the FormData object
-            formData.append('name', name1); // Replace 'name' with the actual variable containing the value you want to send
-            
+            formData.append('name', name1); // Append the 'name' variable to the FormData object
+
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminal-sightings',
                 formData,
@@ -80,12 +80,11 @@ function HomePage() {
                 }
             );
             console.log('Update response:', response.data);
-            fetchData(); // Fetch updated data after successful update
+            fetchData();
         } catch (error) {
             console.error('Error updating data:', error);
         }
     };
-    
 
     return (
         <div className="cont">
@@ -106,7 +105,6 @@ function HomePage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* Render table rows dynamically based on data from backend */}
                         {data.map((item, index) => (
                             <tr key={index}>
                                 <td>{item[1]}</td>

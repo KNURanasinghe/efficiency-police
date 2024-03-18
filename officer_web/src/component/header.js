@@ -17,7 +17,7 @@ function Header() {
             try {
                 const response = await axios.post('/api/officer/get-alerts',{
                     headers: {
-                      'Authorization': 'Bearer ${token}'
+                        'Authorization': `Bearer ${token}`
                     }});
                 // Assuming the response data includes the notification count
                 const { data } = response.data;

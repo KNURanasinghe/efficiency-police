@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './signin.css';
 
-function SignIn() {
+function SignInPage() {
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     });
 
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
 
-    const handleSubmit = async e => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         try {
             // Create FormData object
             const formData1 = new FormData();
             formData1.append('username', formData.username);
             formData1.append('password', formData.password);
 
-            // Make POST request to your API endpoint
+            // Make POST request to the login endpoint
             const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
@@ -33,6 +32,7 @@ function SignIn() {
 
             console.log('Response:', response.data);
 
+            // Clear the form fields after successful login
             setFormData({
                 username: '',
                 password: ''
@@ -46,21 +46,23 @@ function SignIn() {
     };
 
     return (
-        <div className="signin-container">
+        <div>
             <h2>Sign In</h2>
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
-                </div>
+                <label>
+                    Username:
+                    <input type="text" name="username" value={formData.username} onChange={handleInputChange} required />
+                </label>
+                <br />
+                <label>
+                    Password:
+                    <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
+                </label>
+                <br />
                 <button type="submit">Sign In</button>
             </form>
         </div>
     );
 }
 
-export default SignIn;
+export default SignInPage;

@@ -5,66 +5,75 @@ import './clearence.css';
 function ClearancePage() {
     const [requests, setRequests] = useState([]);
     const token = localStorage.getItem('token');
+
     useEffect(() => {
-        // Function to fetch data from the API
         const fetchData = async () => {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/officer/get-clearance-requests',{
-                    headers: {
-                      'Authorization': 'Bearer ${token}'
-                    }}); // Replace '/api/requests' with your actual API endpoint
-                setRequests(response.data); // Set the fetched data to the state variable
+                const response = await axios.post(
+                    'http://127.0.0.1:8000/api/officer/get-clearance-requests',
+                    null, // Pass null as the second argument since we're not sending any data in this request
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
+                setRequests(response.data);
             } catch (error) {
                 console.error('Error fetching requests:', error);
             }
         };
 
-        // Call the fetchData function when the component mounts
         fetchData();
 
-        // Cleanup function to cancel any pending requests when the component unmounts
         return () => {};
-    }, []); // Run this effect only once when the component mounts
+    }, []);
 
-    const handleApprove = async e => {
-        e.preventDefault();
+    const handleApprove = async (requestId) => {
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/officer/approve-clearance-report', formData,{
-                headers: {
-                  'Authorization': 'Bearer ${token}'
-                }});
+            const formData = new FormData();
+            formData.append('request_id', requestId);
+
+            const response = await axios.post(
+                'http://127.0.0.1:8000/api/officer/approve-clearance-report',
+                formData,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
             console.log('Response:', response.data);
-            setFormData({
-                r_id: '',
-                details: ''
-            });
-            // Optionally, you can handle success behavior here, e.g., redirecting to another page
+            // Update requests or any other necessary action
+
         } catch (error) {
             console.error('Error:', error);
-            // Optionally, you can handle error behavior here, e.g., displaying an error message to the user
+            // Handle error
         }
     };
 
-    const handleDisapprove = async e => {
-        e.preventDefault();
+    const handleDisapprove = async (requestId) => {
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/officer/disapprove-clearance-report', formData,{
-                headers: {
-                  'Authorization': 'Bearer ${token}'
-                }});
+            const formData = new FormData();
+            formData.append('request_id', requestId);
+
+            const response = await axios.post(
+                'http://127.0.0.1:8000/api/officer/disapprove-clearance-report',
+                formData,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
             console.log('Response:', response.data);
-            setFormData({
-                r_id: '',
-                details: ''
-            });
-            // Optionally, you can handle success behavior here, e.g., redirecting to another page
+            // Update requests or any other necessary action
+
         } catch (error) {
             console.error('Error:', error);
-            // Optionally, you can handle error behavior here, e.g., displaying an error message to the user
+            // Handle error
         }
     };
-
-
 
     return (
         <div className="clearance-page">
@@ -74,7 +83,6 @@ function ClearancePage() {
                     <div className="request-list">
                         {requests.map(request => (
                             <div key={request[0]} className="request-item">
-                                
                                 <div className="request-details">
                                     <p>Description: {request[4]}</p>
                                     <p>Requested by: {request[1]}</p>

@@ -19,24 +19,39 @@ function SignUp() {
         }));
     };
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        try {
-            // Make POST request to your API endpoint
-            const response = await axios.post('http://127.0.0.1:8000/api/auth/register', formData);
-            console.log('Response:', response.data); // Log the response from the API
-            // Reset form fields
-            setFormData({
-                username: '',
-                email: '',
-                password: ''
-            });
-            // Optionally, you can handle success behavior here, e.g., redirecting to another page
-        } catch (error) {
-            console.error('Error:', error); // Log any errors
-            // Optionally, you can handle error behavior here, e.g., displaying an error message to the user
-        }
-    };
+
+const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+        // Create FormData object
+        const formData1 = new FormData();
+        formData.append('username', formData.username);
+        formData.append('email', formData.email);
+        formData.append('password', formData.password);
+
+        // Make POST request to your API endpoint
+        const response = await axios.post('http://127.0.0.1:8000/api/auth/register', formData1, {
+            headers: {
+                'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
+            }
+        });
+
+        console.log('Response:', response.data); // Log the response from the API
+
+        // Reset form fields
+        setFormData({
+            username: '',
+            email: '',
+            password: ''
+        });
+
+        // Optionally, you can handle success behavior here, e.g., redirecting to another page
+    } catch (error) {
+        console.error('Error:', error); // Log any errors
+
+        // Optionally, you can handle error behavior here, e.g., displaying an error message to the user
+    }
+};
 
     return (
         <div className="signup-container">

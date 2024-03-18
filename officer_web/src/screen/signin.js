@@ -1,11 +1,8 @@
-// SignIn.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import './signin.css';
 
 function SignIn() {
-    localStorage.setItem('token', 'access_token');
     const [formData, setFormData] = useState({
         username: '',
         password: ''
@@ -22,12 +19,25 @@ function SignIn() {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData);
+            // Create FormData object
+            const formData = new FormData();
+            formData.append('username', formData.username);
+            formData.append('password', formData.password);
+
+            // Make POST request to your API endpoint
+            const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
+                }
+            });
+
             console.log('Response:', response.data);
+
             setFormData({
                 username: '',
                 password: ''
             });
+
             // Optionally, you can handle success behavior here, e.g., redirecting to another page
         } catch (error) {
             console.error('Error:', error);

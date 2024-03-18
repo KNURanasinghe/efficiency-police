@@ -37,6 +37,7 @@ function Header() {
                 location: notificationData[2],
                 time: notificationData[3]
             };
+            
             setCriminalInfo(criminalData);
             setShowMessageBox(true); // Show the message box
         }, 5000); // Simulating API call after 5 seconds

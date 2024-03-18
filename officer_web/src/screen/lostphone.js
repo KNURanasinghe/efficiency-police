@@ -5,14 +5,23 @@ import './lostphone.css';
 function ClearancePage() {
     const [requests, setRequests] = useState([]);
     const token = localStorage.getItem('token');
+
     useEffect(() => {
         // Function to fetch data from the API
         const fetchData = async () => {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/officer/get-lost-item-reports',{
-                    headers: {
-                      'Authorization': 'Bearer ${token}'
-                    }}); // Replace '/api/requests' with your actual API endpoint
+                const formData = new FormData();
+                // Append any necessary data to the FormData object
+
+                const response = await axios.post(
+                    'http://127.0.0.1:8000/api/officer/get-lost-item-reports',
+                    formData,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
                 setRequests(response.data); // Set the fetched data to the state variable
             } catch (error) {
                 console.error('Error fetching requests:', error);
@@ -25,9 +34,6 @@ function ClearancePage() {
         // Cleanup function to cancel any pending requests when the component unmounts
         return () => {};
     }, []); // Run this effect only once when the component mounts
-
-
-
 
     return (
         <div className="clearance-page">

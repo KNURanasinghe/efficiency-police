@@ -5,14 +5,17 @@ import './home.css';
 
 function HomePage() {
     const [data, setData] = useState([]);
-
+    const token = localStorage.getItem('token');
     useEffect(() => {
         fetchData(); // Call fetchData function when the component mounts
     }, []); // Run this effect only once when the component mounts
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/officer/criminals'); // Replace the URL with your API endpoint
+            const response = await axios.post('http://127.0.0.1:8000/api/officer/criminals',{
+                headers: {
+                  'Authorization': 'Bearer ${token}'
+                }}); // Replace the URL with your API endpoint
             setData(response.data); // Set the fetched data to the state variable
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -22,7 +25,10 @@ function HomePage() {
     const handleInsert = async () => {
         try {
             // Make an Axios request to your insert API endpoint
-            const response = await axios.post('http://127.0.0.1:8000/api/officer/add-criminal', { /* Insert data here */ });
+            const response = await axios.post('http://127.0.0.1:8000/api/officer/add-criminal',{
+                headers: {
+                  'Authorization': 'Bearer ${token}'
+                }});
             console.log('Insert response:', response.data);
             // Fetch updated data after successful insert
             fetchData();
@@ -31,15 +37,18 @@ function HomePage() {
         }
     };
 
-    const handleUpdate = async (id) => {
+    const handleUpdate = async () => {
         try {
-            // Make an Axios request to your update API endpoint
-            const response = await axios.put(`http://127.0.0.1:8000/api/officer/criminal-sightings/${id}`, { /* Updated data here */ });
+            // Make an Axios request to your insert API endpoint
+            const response = await axios.post('http://127.0.0.1:8000//api/officer/criminal-sightings', {
+                headers: {
+                  'Authorization': 'Bearer ${token}'
+                }});
             console.log('Update response:', response.data);
-            // Fetch updated data after successful update
+            // Fetch updated data after successful insert
             fetchData();
         } catch (error) {
-            console.error('Error updating data:', error);
+            console.error('Error inserting data:', error);
         }
     };
 
@@ -53,9 +62,11 @@ function HomePage() {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Age</th>
+                            <th>Division</th>
+                            <th>District</th>
+                            <th>Description</th>
                             {/* Add more table headers if needed */}
                         </tr>
                     </thead>
@@ -63,9 +74,11 @@ function HomePage() {
                         {/* Render table rows dynamically based on data from backend */}
                         {data.map((item, index) => (
                             <tr key={index}>
-                                <td>{item.id}</td>
-                                <td>{item.name}</td>
-                                <td>{item.age}</td>
+                                <td>{item[1]}</td>
+                                <td>{item[2]}</td>
+                                <td>{item[4]}</td>
+                                <td>{item[5]}</td>
+                                <td>{item[3]}</td>
                                 {/* Add more table cells if needed */}
                             </tr>
                         ))}

@@ -5,7 +5,7 @@ import axios from 'axios';
 import './signin.css';
 
 function SignIn() {
-
+    localStorage.setItem('token', 'access_token');
     const [formData, setFormData] = useState({
         username: '',
         password: ''

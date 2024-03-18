@@ -51,7 +51,8 @@ function HomePage() {
         setFormType('update');
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         try {
             const formData = new FormData();
             formData.append('name', name1);
@@ -74,7 +75,7 @@ function HomePage() {
             } else if (formType === 'update') {
                 // Perform update operation
                 await axios.post(
-                    'http://127.0.0.1:8000/api/officer/update-criminal-data',
+                    'http://127.0.0.1:8000/api/officer/criminal-sightings',
                     formData,
                     {
                         headers: {
@@ -156,7 +157,8 @@ function HomePage() {
                             <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <button type="submit">Submit</button>
+                            <button type="submit">{formType === 'insert' ? 'Insert' : 'Update'}</button>
+                            <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
                         </div>
                     </form>
                 </div>

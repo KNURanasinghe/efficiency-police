@@ -21,7 +21,7 @@ function Header() {
                     null,
                     {
                         headers: {
-                            'Authorization': `Bearer ${token}`
+                            'Authorization': 'Bearer ${token}'
                         }
                     }
                 );

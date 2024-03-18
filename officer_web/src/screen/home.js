@@ -20,7 +20,7 @@ function HomePage() {
                 null,
                 {
                     headers: {
-                        'Authorization': `Bearer ${token}`
+                        'Authorization': 'Bearer ${token}'
                     }
                 }
             );

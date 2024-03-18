@@ -15,13 +15,14 @@ function Header() {
         // Fetch notification details
         console.log(localStorage.getItem('token'));
         const fetchNotificationDetails = async () => {
+            console.log('header', token)
             try {
                 const response = await axios.post(
                     'http://127.0.0.1:8000/api/officer/get-alerts',
                     null,
                     {
                         headers: {
-                            'Authorization': 'Bearer ${token}'
+                            'Authorization': `Bearer ${token}`
                         }
                     }
                 );

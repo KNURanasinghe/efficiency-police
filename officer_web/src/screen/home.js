@@ -14,13 +14,13 @@ function HomePage() {
                 console.error('Token is null');
                 return;
             }
-
+            console.log('home',token)
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminals',
                 null,
                 {
                     headers: {
-                        'Authorization': 'Bearer ${token}'
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             );

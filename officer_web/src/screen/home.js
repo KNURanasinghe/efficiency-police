@@ -12,7 +12,7 @@ function HomePage() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('{{baseURL}}/api/officer/criminals'); // Replace the URL with your API endpoint
+            const response = await axios.get('http://127.0.0.1:8000/api/officer/criminals'); // Replace the URL with your API endpoint
             setData(response.data); // Set the fetched data to the state variable
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -22,7 +22,7 @@ function HomePage() {
     const handleInsert = async () => {
         try {
             // Make an Axios request to your insert API endpoint
-            const response = await axios.post('{{baseURL}}/api/officer/add-criminal', { /* Insert data here */ });
+            const response = await axios.post('http://127.0.0.1:8000/api/officer/add-criminal', { /* Insert data here */ });
             console.log('Insert response:', response.data);
             // Fetch updated data after successful insert
             fetchData();
@@ -34,7 +34,7 @@ function HomePage() {
     const handleUpdate = async (id) => {
         try {
             // Make an Axios request to your update API endpoint
-            const response = await axios.put(`{{baseURL}}/api/officer/criminal-sightings/${id}`, { /* Updated data here */ });
+            const response = await axios.put(`http://127.0.0.1:8000/api/officer/criminal-sightings/${id}`, { /* Updated data here */ });
             console.log('Update response:', response.data);
             // Fetch updated data after successful update
             fetchData();

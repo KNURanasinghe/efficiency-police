@@ -9,7 +9,7 @@ function ClearancePage() {
         // Function to fetch data from the API
         const fetchData = async () => {
             try {
-                const response = await axios.get('/api/requests'); // Replace '/api/requests' with your actual API endpoint
+                const response = await axios.get('http://127.0.0.1:8000/api/officer/get-clearance-requests'); // Replace '/api/requests' with your actual API endpoint
                 setRequests(response.data); // Set the fetched data to the state variable
             } catch (error) {
                 console.error('Error fetching requests:', error);
@@ -23,55 +23,41 @@ function ClearancePage() {
         return () => {};
     }, []); // Run this effect only once when the component mounts
 
-    const handleApprove = requestId => {
-        // Send request to API to approve the clearance request with the given ID
-        // Example axios request:
-        
-        axios.put(`/api/requests/${requestId}/approve`, { status: 'approved' })
-            .then(response => {
-                // Update local state to reflect the change
-                setRequests(prevRequests =>
-                    prevRequests.map(request =>
-                        request.id === requestId ? { ...request, status: 'approved' } : request
-                    )
-                );
-            })
-            .catch(error => console.error('Error approving request:', error));
-        
-    };
-
-    const handleDisapprove = requestId => {
-        // Send request to API to disapprove the clearance request with the given ID
-        // Example axios request:
-        /*
-        axios.put(`/api/requests/${requestId}/disapprove`, { status: 'disapproved' })
-            .then(response => {
-                // Update local state to reflect the change
-                setRequests(prevRequests =>
-                    prevRequests.map(request =>
-                        request.id === requestId ? { ...request, status: 'disapproved' } : request
-                    )
-                );
-            })
-            .catch(error => console.error('Error disapproving request:', error));
-        */
-    };
-
-    const generateDemoData = () => {
-        const demoData = [
-            { id: 1, title: 'Demo Request 1', description: 'Description for Demo Request 1', requestedBy: 'John Doe', status: 'pending' },
-            { id: 2, title: 'Demo Request 2', description: 'Description for Demo Request 2', requestedBy: 'Jane Smith', status: 'pending' },
-            { id: 3, title: 'Demo Request 3', description: 'Description for Demo Request 3', requestedBy: 'Alice Johnson', status: 'approved' },
-            { id: 3, title: 'Demo Request 3', description: 'Description for Demo Request 3', requestedBy: 'Alice Johnson', status: 'approved' },
-            // Add more demo data as needed
-        ];
-        setRequests(demoData);
-    };
-
     useEffect(() => {
-        // Call the function to generate demo data
-        generateDemoData();
-    }, []);
+        // Function to fetch data from the API
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/api/officer/get-lost-item-reports'); // Replace '/api/requests' with your actual API endpoint
+                setRequests(response.data); // Set the fetched data to the state variable
+            } catch (error) {
+                console.error('Error fetching requests:', error);
+            }
+        };
+
+        // Call the fetchData function when the component mounts
+        fetchData();
+
+        // Cleanup function to cancel any pending requests when the component unmounts
+        return () => {};
+    }, []); // Run this effect only once when the component mounts
+
+    const handleApprove = async e => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/officer/approve-clearance-report', formData);
+            console.log('Response:', response.data);
+            setFormData({
+                r_id: '',
+                details: ''
+            });
+            // Optionally, you can handle success behavior here, e.g., redirecting to another page
+        } catch (error) {
+            console.error('Error:', error);
+            // Optionally, you can handle error behavior here, e.g., displaying an error message to the user
+        }
+    };
+
+
 
     return (
         <div className="clearance-page">

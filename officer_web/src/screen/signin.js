@@ -5,6 +5,7 @@ import axios from 'axios';
 import './signin.css';
 
 function SignIn() {
+
     const [formData, setFormData] = useState({
         username: '',
         password: ''
@@ -21,7 +22,7 @@ function SignIn() {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            const response = await axios.post('{{baseURL}}/api/auth/login', formData);
+            const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData);
             console.log('Response:', response.data);
             setFormData({
                 username: '',

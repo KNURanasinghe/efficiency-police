@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './signin.css';
 
 function SignIn() {
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         username: '',
@@ -40,7 +40,7 @@ function SignIn() {
             });
 
             // Redirect to the home page upon successful login
-            history.push('/');
+            navigate('/');
 
         } catch (error) {
             console.error('Error:', error);

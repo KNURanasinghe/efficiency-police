@@ -62,7 +62,7 @@ function HomePage() {
         event.preventDefault();
         try {
             const formData = new FormData();
-            formData.append('id', id);
+            formData.append('c_id', id);
             formData.append('name', name1);
             formData.append('age', age);
             formData.append('division', division);

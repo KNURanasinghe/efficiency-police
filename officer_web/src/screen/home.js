@@ -157,8 +157,7 @@ function HomePage() {
                             <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <button type="submit">{formType === 'insert' ? 'Insert' : 'Update'}</button>
-                            <button type="button" onClick={() => setShowForm(false)}>Cancel</button>
+                            <button type="submit">{formType === 'insert' ? 'Add' : 'Update'}</button>
                         </div>
                     </form>
                 </div>

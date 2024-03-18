@@ -82,7 +82,7 @@ function HomePage() {
             } else if (formType === 'update') {
                 // Perform update operation
                 await axios.post(
-                    'http://127.0.0.1:8000/api/officer/criminal-sightings',
+                    'http://127.0.0.1:8000/api/officer/update-criminal-data',
                     { ...formData, id },
                     {
                         headers: {

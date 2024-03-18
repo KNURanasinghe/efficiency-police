@@ -13,7 +13,7 @@ function Header() {
     const token = localStorage.getItem('token');
     useEffect(() => {
         // Fetch notification details
-        console.error(localStorage.getItem('token'));
+        console.log(localStorage.getItem('token'));
         const fetchNotificationDetails = async () => {
             try {
                 const response = await axios.post(

@@ -7,9 +7,13 @@ function HomePage() {
     const [data, setData] = useState([]);
     const token = localStorage.getItem('token');
 
-    // Define fetchData function
     const fetchData = async () => {
         try {
+            if (!token) {
+                console.error('Token is null');
+                return;
+            }
+    
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminals',
                 null,

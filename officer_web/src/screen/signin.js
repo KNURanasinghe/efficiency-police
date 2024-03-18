@@ -34,7 +34,7 @@ function SignIn() {
             });
     
             // Store the access token in localStorage
-            localStorage.setItem('access_token', response.data.access_token);
+            localStorage.setItem('access_token', response.data.access_token); 
     
             console.log('Response:', response.data);
     

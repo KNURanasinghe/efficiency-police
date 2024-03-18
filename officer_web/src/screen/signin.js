@@ -26,28 +26,32 @@ function SignIn() {
             const formData1 = new FormData();
             formData1.append('username', formData.username);
             formData1.append('password', formData.password);
-
+    
             const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
+    
+            // Store the access token in localStorage
             localStorage.setItem('access_token', response.data.access_token);
+    
             console.log('Response:', response.data);
-
+    
             setFormData({
                 username: '',
                 password: ''
             });
-
+    
             // Redirect to the home page upon successful login
             navigate('/');
-
+    
         } catch (error) {
             console.error('Error:', error);
             // Optionally, you can display an error message to the user
         }
     };
+    
 
     return (
         <div className="signin-container">

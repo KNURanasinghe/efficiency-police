@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import Axios
+import axios from 'axios';
 
 import './home.css';
 
@@ -7,32 +7,31 @@ function HomePage() {
     const [data, setData] = useState([]);
     const token = localStorage.getItem('token');
 
-    useEffect(() => {
-        fetchData(); // Call fetchData function when the component mounts
-    }, []); // Run this effect only once when the component mounts
-
+    // Define fetchData function
     const fetchData = async () => {
         try {
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminals',
-                null, // Pass null as the second argument since we're not sending any data in this request
+                null,
                 {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 }
             );
-            setData(response.data); // Set the fetched data to the state variable
+            setData(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
+    useEffect(() => {
+        fetchData(); // Call fetchData function when the component mounts
+    }, []); // Run this effect only once when the component mounts
+
     const handleInsert = async () => {
         try {
             const formData = new FormData();
-            // Append any necessary data to the FormData object
-
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/add-criminal',
                 formData,
@@ -43,8 +42,7 @@ function HomePage() {
                 }
             );
             console.log('Insert response:', response.data);
-            // Fetch updated data after successful insert
-            fetchData();
+            fetchData(); // Fetch updated data after successful insert
         } catch (error) {
             console.error('Error inserting data:', error);
         }
@@ -53,8 +51,6 @@ function HomePage() {
     const handleUpdate = async () => {
         try {
             const formData = new FormData();
-            // Append any necessary data to the FormData object
-
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminal-sightings',
                 formData,
@@ -65,8 +61,7 @@ function HomePage() {
                 }
             );
             console.log('Update response:', response.data);
-            // Fetch updated data after successful update
-            fetchData();
+            fetchData(); // Fetch updated data after successful update
         } catch (error) {
             console.error('Error updating data:', error);
         }

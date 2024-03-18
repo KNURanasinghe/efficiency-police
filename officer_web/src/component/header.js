@@ -15,33 +15,39 @@ function Header() {
         // Fetch notification details
         const fetchNotificationDetails = async () => {
             try {
-                const response = await axios.post('/api/officer/get-alerts',{
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }});
-                // Assuming the response data includes the notification count
+                const response = await axios.post(
+                    '/api/officer/get-alerts',
+                    null,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
                 const { data } = response.data;
                 setNotificationData(data);
             } catch (error) {
                 console.error('Error fetching notification details:', error);
             }
         };
-
+    
         // Call the function to fetch notification details
         fetchNotificationDetails();
-
+    
         // Simulating an API call to check if a criminal is found
         const timeout = setTimeout(() => {
-            const criminalData = {
-                name: notificationData[1],
-                location: notificationData[2],
-                time: notificationData[3]
-            };
-            
-            setCriminalInfo(criminalData);
-            setShowMessageBox(true); // Show the message box
+            if (notificationData) {
+                const criminalData = {
+                    name: notificationData[1],
+                    location: notificationData[2],
+                    time: notificationData[3]
+                };
+                
+                setCriminalInfo(criminalData);
+                setShowMessageBox(true); // Show the message box
+            }
         }, 5000); // Simulating API call after 5 seconds
-
+    
         // Clean up the timeout to avoid memory leaks
         return () => clearTimeout(timeout);
     }, []); // Run this effect only once when the component mounts

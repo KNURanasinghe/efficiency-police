@@ -13,7 +13,7 @@ function HomePage() {
                 console.error('Token is null');
                 return;
             }
-    
+
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminals',
                 null,
@@ -30,11 +30,18 @@ function HomePage() {
     };
 
     useEffect(() => {
-        fetchData(); // Call fetchData function when the component mounts
-    }, []); // Run this effect only once when the component mounts
+        if (token) { // Check if token exists before fetching data
+            fetchData();
+        }
+    }, [token]); // Re-run effect when token changes
 
     const handleInsert = async () => {
         try {
+            if (!token) {
+                console.error('Token is null');
+                return;
+            }
+
             const formData = new FormData();
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/add-criminal',
@@ -54,6 +61,11 @@ function HomePage() {
 
     const handleUpdate = async () => {
         try {
+            if (!token) {
+                console.error('Token is null');
+                return;
+            }
+
             const formData = new FormData();
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminal-sightings',

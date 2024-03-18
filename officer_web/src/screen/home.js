@@ -5,7 +5,13 @@ import './home.css';
 
 function HomePage() {
     const [data, setData] = useState([]);
-    const [name1, setName1] = useState(''); // Declare name1 variable
+    const [name1, setName1] = useState('');
+    const [age, setAge] = useState('');
+    const [division, setDivision] = useState('');
+    const [district, setDistrict] = useState('');
+    const [description, setDescription] = useState('');
+    const [showForm, setShowForm] = useState(false); // State to control the visibility of the form
+    const [formType, setFormType] = useState('insert'); // State to determine if the form is for insert or update
     const token = localStorage.getItem('token');
 
     const fetchData = async () => {
@@ -14,7 +20,6 @@ function HomePage() {
                 console.error('Token is null');
                 return;
             }
-            console.log('home',token)
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminals',
                 null,
@@ -36,53 +41,63 @@ function HomePage() {
         }
     }, [token]);
 
-    const handleInsert = async () => {
-        try {
-            if (!token) {
-                console.error('Token is null');
-                return;
-            }
-
-            const formData = new FormData();
-            const response = await axios.post(
-                'http://127.0.0.1:8000/api/officer/add-criminal',
-                formData,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                }
-            );
-            console.log('Insert response:', response.data);
-            fetchData();
-        } catch (error) {
-            console.error('Error inserting data:', error);
-        }
+    const handleInsert = () => {
+        setShowForm(true);
+        setFormType('insert');
     };
 
-    const handleUpdate = async () => {
+    const handleUpdate = () => {
+        setShowForm(true);
+        setFormType('update');
+    };
+
+    const handleSubmit = async () => {
         try {
-            if (!token) {
-                console.error('Token is null');
-                return;
+            const formData = new FormData();
+            formData.append('name', name1);
+            formData.append('age', age);
+            formData.append('division', division);
+            formData.append('district', district);
+            formData.append('description', description);
+
+            if (formType === 'insert') {
+                // Perform insert operation
+                await axios.post(
+                    'http://127.0.0.1:8000/api/officer/add-criminal',
+                    formData,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
+            } else if (formType === 'update') {
+                // Perform update operation
+                await axios.post(
+                    'http://127.0.0.1:8000/api/officer/criminal-sightings',
+                    formData,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }
+                );
             }
 
-            const formData = new FormData();
-            formData.append('name', name1); // Append the 'name' variable to the FormData object
+            // Reset form fields
+            setName1('');
+            setAge('');
+            setDivision('');
+            setDistrict('');
+            setDescription('');
 
-            const response = await axios.post(
-                'http://127.0.0.1:8000/api/officer/criminal-sightings',
-                formData,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                }
-            );
-            console.log('Update response:', response.data);
+            // Hide the form
+            setShowForm(false);
+
+            // Refetch data
             fetchData();
         } catch (error) {
-            console.error('Error updating data:', error);
+            console.error('Error:', error);
         }
     };
 
@@ -101,7 +116,6 @@ function HomePage() {
                             <th>Division</th>
                             <th>District</th>
                             <th>Description</th>
-                            {/* Add more table headers if needed */}
                         </tr>
                     </thead>
                     <tbody>
@@ -112,12 +126,41 @@ function HomePage() {
                                 <td>{item[4]}</td>
                                 <td>{item[5]}</td>
                                 <td>{item[3]}</td>
-                                {/* Add more table cells if needed */}
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+            {showForm && (
+                <div className="form-container">
+                    <h2>{formType === 'insert' ? 'Insert Data' : 'Update Data'}</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label>Name:</label>
+                            <input type="text" value={name1} onChange={(e) => setName1(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <label>Age:</label>
+                            <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <label>Division:</label>
+                            <input type="text" value={division} onChange={(e) => setDivision(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <label>District:</label>
+                            <input type="text" value={district} onChange={(e) => setDistrict(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <label>Description:</label>
+                            <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <button type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            )}
         </div>
     );
 }

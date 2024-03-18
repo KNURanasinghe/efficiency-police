@@ -5,6 +5,7 @@ import './home.css';
 
 function HomePage() {
     const [data, setData] = useState([]);
+    const [id, setId] = useState('');
     const [name1, setName1] = useState('');
     const [age, setAge] = useState('');
     const [division, setDivision] = useState('');
@@ -46,7 +47,13 @@ function HomePage() {
         setFormType('insert');
     };
 
-    const handleUpdate = () => {
+    const handleUpdate = (rowData) => {
+        setId(rowData[0]);
+        setName1(rowData[1]);
+        setAge(rowData[2]);
+        setDivision(rowData[4]);
+        setDistrict(rowData[5]);
+        setDescription(rowData[3]);
         setShowForm(true);
         setFormType('update');
     };
@@ -76,7 +83,7 @@ function HomePage() {
                 // Perform update operation
                 await axios.post(
                     'http://127.0.0.1:8000/api/officer/criminal-sightings',
-                    formData,
+                    { ...formData, id },
                     {
                         headers: {
                             'Authorization': `Bearer ${token}`
@@ -86,6 +93,7 @@ function HomePage() {
             }
 
             // Reset form fields
+            setId('');
             setName1('');
             setAge('');
             setDivision('');
@@ -106,27 +114,32 @@ function HomePage() {
         <div className="cont">
             <div className="buttons">
                 <button className="insertButton" onClick={handleInsert}>Insert</button>
-                <button className="updateButton" onClick={handleUpdate}>Update</button>
             </div>
             <div className="container">
                 <table>
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Age</th>
                             <th>Division</th>
                             <th>District</th>
                             <th>Description</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((item, index) => (
                             <tr key={index}>
+                                <td>{item[0]}</td>
                                 <td>{item[1]}</td>
                                 <td>{item[2]}</td>
                                 <td>{item[4]}</td>
                                 <td>{item[5]}</td>
                                 <td>{item[3]}</td>
+                                <td>
+                                    <button onClick={() => handleUpdate(item)}>Update</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

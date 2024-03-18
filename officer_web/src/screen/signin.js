@@ -4,6 +4,7 @@ import axios from 'axios';
 import './signin.css';
 
 function SignIn() {
+    
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ function SignIn() {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-
+            localStorage.setItem('access_token', response.data.access_token);
             console.log('Response:', response.data);
 
             setFormData({

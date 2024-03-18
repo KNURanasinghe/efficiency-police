@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './signin.css';
 
-function SignInPage() {
+function SignIn() {
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     });
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
     const handleSubmit = async (event) => {
@@ -46,23 +47,21 @@ function SignInPage() {
     };
 
     return (
-        <div>
+        <div className="signin-container">
             <h2>Sign In</h2>
             <form onSubmit={handleSubmit}>
-                <label>
-                    Username:
-                    <input type="text" name="username" value={formData.username} onChange={handleInputChange} required />
-                </label>
-                <br />
-                <label>
-                    Password:
-                    <input type="password" name="password" value={formData.password} onChange={handleInputChange} required />
-                </label>
-                <br />
+                <div className="form-group">
+                    <label htmlFor="username">Username</label>
+                    <input type="text" id="username" name="username" value={formData.username} onChange={handleChange} required />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
+                </div>
                 <button type="submit">Sign In</button>
             </form>
         </div>
     );
 }
 
-export default SignInPage;
+export default SignIn;

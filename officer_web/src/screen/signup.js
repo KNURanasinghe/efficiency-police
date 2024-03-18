@@ -25,9 +25,9 @@ const handleSubmit = async e => {
     try {
         // Create FormData object
         const formData1 = new FormData();
-        formData.append('username', formData.username);
-        formData.append('email', formData.email);
-        formData.append('password', formData.password);
+        formData1.append('username', formData.username);
+        formData1.append('email', formData.email);
+        formData1.append('password', formData.password);
 
         // Make POST request to your API endpoint
         const response = await axios.post('http://127.0.0.1:8000/api/auth/register', formData1, {

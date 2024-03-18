@@ -84,7 +84,7 @@ function HomePage() {
                 // Perform update operation
                 await axios.post(
                     'http://127.0.0.1:8000/api/officer/update-criminal-data',
-                    { ...formData, id },
+                 formData ,
                     {
                         headers: {
                             'Authorization': `Bearer ${token}`

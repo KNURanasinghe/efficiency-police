@@ -39,11 +39,12 @@ function SignIn() {
                 password: ''
             });
 
-            // Redirect to the home page
+            // Redirect to the home page upon successful login
             history.push('/');
 
         } catch (error) {
             console.error('Error:', error);
+            // Optionally, you can display an error message to the user
         }
     };
 

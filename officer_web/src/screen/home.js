@@ -65,8 +65,11 @@ function HomePage() {
                 console.error('Token is null');
                 return;
             }
-
+    
             const formData = new FormData();
+            // Append the 'name' variable to the FormData object
+            formData.append('name', name1); // Replace 'name' with the actual variable containing the value you want to send
+            
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/officer/criminal-sightings',
                 formData,
@@ -82,6 +85,7 @@ function HomePage() {
             console.error('Error updating data:', error);
         }
     };
+    
 
     return (
         <div className="cont">

@@ -20,12 +20,12 @@ function SignIn() {
         e.preventDefault();
         try {
             // Create FormData object
-            const formData = new FormData();
-            formData.append('username', formData.username);
-            formData.append('password', formData.password);
+            const formData1 = new FormData();
+            formData1.append('username', formData.username);
+            formData1.append('password', formData.password);
 
             // Make POST request to your API endpoint
-            const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData, {
+            const response = await axios.post('http://127.0.0.1:8000/api/auth/login', formData1, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
                 }

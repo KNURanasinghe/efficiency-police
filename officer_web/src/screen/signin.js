@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom'; // Import withRouter
+import { useHistory } from 'react-router-dom'; // Import useHistory hook
 import axios from 'axios';
 import './signin.css';
 
-function SignIn({ history }) { // Destructure history from props
+function SignIn() {
+    const history = useHistory(); // Initialize useHistory hook
 
     const [formData, setFormData] = useState({
         username: '',
@@ -42,7 +43,7 @@ function SignIn({ history }) { // Destructure history from props
             });
 
             // Navigate to the home page
-            history.push('/'); // Redirect to the home page
+            history.push('/');
 
             // Optionally, you can handle success behavior here, e.g., displaying a success message
         } catch (error) {
@@ -69,4 +70,4 @@ function SignIn({ history }) { // Destructure history from props
     );
 }
 
-export default withRouter(SignIn); // Wrap the component with withRouter
+export default SignIn;

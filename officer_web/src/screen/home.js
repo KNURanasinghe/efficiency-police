@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import './home.css';
 
 function HomePage() {
@@ -84,7 +83,7 @@ function HomePage() {
                 // Perform update operation
                 await axios.post(
                     'http://127.0.0.1:8000/api/officer/update-criminal-data',
-                 formData ,
+                    formData,
                     {
                         headers: {
                             'Authorization': `Bearer ${token}`
@@ -116,7 +115,7 @@ function HomePage() {
             <div className="buttons">
                 <button className="insertButton" onClick={handleInsert}>Insert</button>
             </div>
-            <div className="container">
+            <div className="table-container">
                 <table>
                     <thead>
                         <tr>
@@ -149,6 +148,7 @@ function HomePage() {
             {showForm && (
                 <div className="form-container">
                     <h2>{formType === 'insert' ? 'Insert Data' : 'Update Data'}</h2>
+                    <button className="closeButton" onClick={() => setShowForm(false)}>Close</button>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label>Name:</label>

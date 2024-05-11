@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './signin.css';
 
@@ -67,6 +67,7 @@ function SignIn() {
                 </div>
                 <button type="submit">Sign In</button>
             </form>
+            <p>Don't have an account? <Link to="/signup">SignUp</Link></p>
         </div>
     );
 }

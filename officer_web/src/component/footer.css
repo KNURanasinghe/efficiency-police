@@ -1,14 +1,12 @@
 /* Footer.css */
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    background-color: cornflowerblue;
+    color: #fff;
+    padding: 5px;
     width: 100%;
-    background-color: cornflowerblue; /* Light blue color */
-    color: #fff; /* Text color */
-    padding: 10px 0;
-    text-align: center;
+    position: fixed;
+    bottom: 0;
 }
 
 .container {

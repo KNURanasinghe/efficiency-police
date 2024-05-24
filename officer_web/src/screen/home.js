@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import './home.css';
 
 function HomePage() {
@@ -29,7 +29,7 @@ function HomePage() {
                     }
                 }
             );
-            setData(response.data);
+            setData(Array.isArray(response.data)? response.data : []);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -112,6 +112,9 @@ function HomePage() {
 
     return (
         <div className="cont">
+            <div className='home-heading'>
+                <h2>Criminals Data List</h2>
+            </div>
             <div className="buttons">
                 <button className="insertButton" onClick={handleInsert}>Insert</button>
             </div>

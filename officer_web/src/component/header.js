@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import './header.css';
+import React, { useEffect, useState } from 'react';
 import Logo from '../asset/logo.png';
+import './header.css';
 
 import axios from 'axios';
 
@@ -60,10 +59,19 @@ function Header() {
         setShowMessageBox(false);
     };
 
-    const handleLogout = () => {
-        // Perform logout logic
-        setIsLoggedIn(false);
-    };
+    const handleLogout = async () => {
+        try {
+          await axios.post('http://127.0.0.1:8000/api/auth/logout', {}, {
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+          });
+          localStorage.removeItem('access_token'); // Clear access_token from localStorage
+          setIsLoggedIn(false); // Update state to reflect logged-out status
+        } catch (error) {
+          console.error('Logout Error:', error);
+        }
+      };
 
     return (
         <header className="header">
@@ -74,21 +82,13 @@ function Header() {
                 <div className="name">
                     EfficencyXcel SL
                 </div>
-                <nav>
-                    <ul className="nav-items">
-                        <li><NavLink to="/">Home</NavLink><span className="notification-item"></span></li>
-                        <li><NavLink to="/clearancepage">Police Clearance</NavLink><span className="notification-item"></span></li>
-                        <li><NavLink to="/onlinecomplain">Online Complaints</NavLink><span className="notification-item" data-count="5"></span></li>
-                        <li><NavLink to="/lostphone">Lost Mobiles</NavLink><span className="notification-item" data-count="2"></span></li>
-                    </ul>
-                </nav>
+                
                 <div className="auth-buttons">
                     {isLoggedIn ? (
                         <button onClick={handleLogout}>Logout</button>
                     ) : (
                         <>
-                            <NavLink to="/signin">SignIn</NavLink>
-                            <NavLink to="/signup">SignUp</NavLink>
+                           
                         </>
                     )}
                 </div>

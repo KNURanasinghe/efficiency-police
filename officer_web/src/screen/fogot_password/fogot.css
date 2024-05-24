@@ -1,0 +1,79 @@
+.fogot{
+     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    padding: 20px;
+    box-sizing: border-box;
+    background-image: linear-gradient(
+        to bottom right, 
+        rgba(0, 0, 0, 0.5), /* Start with semi-transparent black */
+        rgba(2, 15, 45, 0.531), /* Transition to semi-transparent purple (Indigo) */
+        rgba(36, 2, 62, 0.415)
+    ),url('../../asset/auth/1.jpg'); /* Path to your background image */
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+}
+.main-cont-forgot{
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 200px;
+    padding-right: 30px;
+    margin-left: 20%;
+    
+}
+
+.sec-fog{
+    margin-top: 40px;
+    max-width: 600px;
+    width: 430px;
+    padding: 20px;
+    margin-right: 140px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.main-cont-forgot h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.fogot-form{
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+button[type="submit"]{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: dodgerblue;
+}

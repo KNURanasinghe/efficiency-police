@@ -2,8 +2,15 @@
 .buttons {
     text-align: right;
     margin-bottom: 2vh; /* Adjusted margin using viewport height */
-    margin-top: 20vh; /* Adjusted margin using viewport height */
+    margin-top: 1vh; /* Adjusted margin using viewport height */
     margin-right: 5vw; /* Adjusted margin using viewport width */
+}
+
+.home-heading{
+    padding: 10px;
+    margin-top:150px;
+    margin-left: 200px;
+    text-align: start;
 }
 
 .insertButton,
@@ -59,7 +66,7 @@ th {
 
 .closeButton {
     position: absolute;
-    top: 43%; /* Adjust top position */
+    top: 53%; /* Adjust top position */
     right: 29%; /* Adjust right position */
     background-color: #f44336; /* Red */
     color: white;

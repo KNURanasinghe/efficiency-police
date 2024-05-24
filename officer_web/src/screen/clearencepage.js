@@ -87,12 +87,14 @@ function ClearancePage() {
                                     <p>Description: {request[4]}</p>
                                     <p>Requested by: {request[1]}</p>
                                     <p>Status: {request[5]}</p>
+                                    
                                 </div>
                                 <div className="request-buttons">
                                     <button className="approve" onClick={() => handleApprove(request[0])}>Approve</button>
                                     <button className="disapprove" onClick={() => handleDisapprove(request[0])}>Disapprove</button>
                                 </div>
                             </div>
+                            
                         ))}
                     </div>
                 </div>

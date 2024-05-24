@@ -6,6 +6,7 @@ import './signin.css';
 function SignIn() {
     
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const [formData, setFormData] = useState({
         username: '',
@@ -44,7 +45,8 @@ function SignIn() {
             });
     
             // Redirect to the home page upon successful login
-            navigate('/');
+            navigate('/newhome');
+            setIsLoggedIn(true);
     
         } catch (error) {
             console.error('Error:', error);
@@ -54,7 +56,19 @@ function SignIn() {
     
 
     return (
-        <div className="signin-container">
+        <div className='signin'>
+            <div className="text-container">
+            <h1>Welcome Back, Officer</h1>
+                <p>Login to access exclusive resources tailored for law enforcement professionals.</p>
+                <ul>
+                    <li>View comprehensive criminal data.</li>
+                    <li>Request police clearance reports.</li>
+                    <li>Access the lost mobile database.</li>
+                    <li>Browse and manage online complaints.</li> </ul>
+                <p>Your next mission starts here. Secure your future with us.</p>
+            </div>
+            <div className="signin-container">
+           
             <h2>Sign In</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -67,7 +81,9 @@ function SignIn() {
                 </div>
                 <button type="submit">Sign In</button>
             </form>
+            <p>Fogot password? <Link to="/fogot">fogot_password</Link></p>
             <p>Don't have an account? <Link to="/signup">SignUp</Link></p>
+        </div>
         </div>
     );
 }

@@ -1,16 +1,63 @@
 /* signin.css */
+.signin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    padding: 20px;
+    box-sizing: border-box;
+    background-image: linear-gradient(
+        to bottom right, 
+        rgba(0, 0, 0, 0.5), /* Start with semi-transparent black */
+        rgba(2, 15, 45, 0.531), /* Transition to semi-transparent purple (Indigo) */
+        rgba(36, 2, 62, 0.415)
+    ),url('../asset/auth/frontp.jpg'); /* Path to your background image */
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+.text-container {
+    max-width: 400px;
+    padding: 20px;
+    color: #fff; /* Text color for better readability against the background */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for contrast */
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.text-container h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: gold; /* Desired color for h1 */
+}
+
+.text-container p, .text-container ul {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+.text-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.text-container ul li {
+    margin-bottom: 10px;
+}
 
 .signin-container {
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 600px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-    margin-top: 200px;
-    padding-right: 30px;
-    margin-left: 40%;
+    width: 400px;
+    margin: auto;
+    margin-right: 190px;
 }
+
 
 .signin-container h2 {
     text-align: center;
@@ -49,4 +96,9 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: dodgerblue;
+}
+
+p {
+    text-align: center;
+    margin-top: 10px;
 }

@@ -4,11 +4,13 @@ import './App.css';
 import Footer from './component/footer';
 import Header from './component/header';
 import ClearancePage from './screen/clearencepage'; // Corrected import
+import Forgot from './screen/fogot_password/fogot';
 import Home from './screen/home';
 import LostPhone from './screen/lostphone';
+import NewHome from './screen/newHome/newHome';
 import ComplainPage from './screen/onlinecomplain';
-import SignUp from './screen/signup';
 import SignIn from './screen/signin';
+import SignUp from './screen/signup';
 
 function App() {
   return (
@@ -16,12 +18,14 @@ function App() {
       <div className="App">
         <Header />
         <Routes> {/* Corrected to use Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/criminallist" element={<Home />} />
+          <Route path="/newhome" element={<NewHome />} /> {/*new home page */}
           <Route path="/clearancepage" element={<ClearancePage />} /> {/* Corrected path */}
           <Route path="/onlinecomplain" element={<ComplainPage />} />
           <Route path="/lostphone" element={<LostPhone />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/" element={<SignIn />} />
+          <Route path="/fogot" element={<Forgot/>} />
           {/* Add more routes as needed */}
         </Routes>
         <Footer />
